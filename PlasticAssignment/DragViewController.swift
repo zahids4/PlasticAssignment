@@ -11,12 +11,14 @@ import UIKit
 class DragViewController: UIViewController {
     @IBOutlet weak var draggableView: UIView!
     @IBOutlet weak var currentTimeLabel: UILabel!
+    var originalPosition = CGPoint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addDragGestureToDraggableView()
-        addRotateAnimation()
+        addRotateAnimationToDraggableView()
         createTimer()
+        originalPosition = draggableView.center
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,14 +34,19 @@ class DragViewController: UIViewController {
     
 
     @objc fileprivate func configureDragAnimation(_ sender: UIPanGestureRecognizer){
-        self.view.bringSubview(toFront: draggableView)
-        let translation = sender.translation(in: self.view)
-        draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
-        sender.setTranslation(CGPoint.zero, in: self.view)
-        createTimer()
+        switch sender.state{
+            case .changed:
+                self.view.bringSubview(toFront: draggableView)
+                let translation = sender.translation(in: self.view)
+                draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
+                sender.setTranslation(CGPoint.zero, in: self.view)
+            case .ended:
+                draggableView.center = originalPosition
+            default: break
+        }
     }
     
-    fileprivate func addRotateAnimation() {
+    fileprivate func addRotateAnimationToDraggableView() {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = 0.0
         rotateAnimation.toValue = Double.pi * 2.0
