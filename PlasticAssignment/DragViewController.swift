@@ -72,16 +72,14 @@ class DragViewController: UIViewController {
         })
     }
     
-
-    
     func createTimer(){
         Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTimeLabel), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimeLabel() {
-//        TimeHelpers.getCurrentTime() { currentTime, error in
-//            if currentTime != nil {
-//                self.currentTimeLabel.text = currentTime
+//        TimeHelpers.getCurrentDateTime() { currentDateTime, error in
+//            if currentDateTime != nil {
+//                self.currentTimeLabel.text = TimeHelpers.formatDateTime(currentDateTime!)
 //            } else {
 //                print("Error")
 //            }

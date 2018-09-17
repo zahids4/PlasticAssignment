@@ -11,7 +11,7 @@ import Alamofire
 
 struct ViewHelpers {
     static func areViewsColliding(_ view1: UIView,_ view2: UIView) -> Bool{
-        //Much better text wouldve been the separating axis test. Had trouble implementing it.
+        //Much better test wouldve been the separating axis test. Had trouble implementing it.
         return view1.layer.frame.intersects(view2.layer.frame)
     }
     
@@ -26,7 +26,7 @@ struct ViewHelpers {
 }
 
 struct TimeHelpers {
-    static func getCurrentTime(completionHandler: @escaping (String?, Error?) -> ()) {
+    static func getCurrentDateTime(completionHandler: @escaping (String?, Error?) -> ()) {
         Alamofire.request("https://dateandtimeasjson.appspot.com").validate().responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -34,6 +34,20 @@ struct TimeHelpers {
             case .failure(let error):
                 completionHandler(nil, error)
             }
+        }
+    }
+    
+    static func formatDateTime(_ currentDate: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "HH:mm:ss"
+        
+        if let date = dateFormatterGet.date(from: currentDate){
+            return dateFormatterPrint.string(from: date)
+        } else {
+            return "Error formatting"
         }
     }
 }
