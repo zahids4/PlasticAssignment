@@ -45,7 +45,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="currentTimeLabel" destination="M8f-jU-YOV" id="vur-CV-eHw"/>
+                        <outlet property="currentTimeLabel" destination="P0e-92-jNO" id="t61-Jd-52y"/>
                         <outlet property="draggableView" destination="Pai-KS-YfW" id="TLW-m1-aqD"/>
                     </connections>
                 </viewController>

@@ -10,11 +10,12 @@ import UIKit
 
 class DragViewController: UIViewController {
     @IBOutlet weak var draggableView: UIView!
+    @IBOutlet weak var currentTimeLabel: UILabel!
     
-    @IBOutlet weak var currentTimeLabel: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         addDragGestureToDraggableView()
+        addRotateAnimation()
         createTimer()
     }
 
@@ -35,13 +36,31 @@ class DragViewController: UIViewController {
         let translation = sender.translation(in: self.view)
         draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
         sender.setTranslation(CGPoint.zero, in: self.view)
+        createTimer()
+    }
+    
+    fileprivate func addRotateAnimation() {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = Double.pi * 2.0
+        rotateAnimation.duration = 2.0
+        rotateAnimation.repeatCount = Float.greatestFiniteMagnitude;
+        draggableView.layer.add(rotateAnimation, forKey: nil)
     }
     
     func createTimer(){
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTimeLabel), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimeLabel() {
-        print("saim")
+        DispatchQueue.main.async {
+//            GetTime.current() { currentTime, error in
+//                if currentTime != nil {
+//                    self.currentTimeLabel.text = currentTime
+//                } else {
+//                    print("Error")
+//                }
+//            }
+        }
     }
 }
