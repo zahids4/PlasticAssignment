@@ -32,7 +32,7 @@ class DragViewController: UIViewController {
         draggableView.addGestureRecognizer(dragGesture)
     }
     
-
+    
     @objc fileprivate func configureDragAnimation(_ sender: UIPanGestureRecognizer){
         switch sender.state{
             case .changed:
@@ -41,9 +41,15 @@ class DragViewController: UIViewController {
                 draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
                 sender.setTranslation(CGPoint.zero, in: self.view)
             case .ended:
-                draggableView.center = originalPosition
+                returnToOriginalPosition()
             default: break
         }
+    }
+    
+    fileprivate func returnToOriginalPosition() {
+        UIView.animate(withDuration: 0.7, animations: {
+            self.draggableView.center = self.originalPosition
+        })
     }
     
     fileprivate func addRotateAnimationToDraggableView() {
