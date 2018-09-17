@@ -16,11 +16,10 @@ class DragViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addDragGestureToDraggableView()
-        addRotateAnimationToDraggableView()
+        addDragGestureAndAnimations()
+        ViewHelpers.addRotateAnimationTo(draggableView)
         createTimer()
         dragViewOriginalPosition = draggableView.center
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +27,7 @@ class DragViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    fileprivate func addDragGestureToDraggableView() {
+    fileprivate func addDragGestureAndAnimations() {
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(configureGestureAndAnimations(_:)))
         draggableView.isUserInteractionEnabled = true
         draggableView.addGestureRecognizer(dragGesture)
@@ -45,10 +44,8 @@ class DragViewController: UIViewController {
             draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: self.view)
         case .ended:
-            if (Helpers.areViewsColliding(draggableView, dropDrawerView)) {
-                UIView.animate(withDuration: 0.7, animations: {
-                    self.draggableView.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.maxY - 100)
-                })
+            if (ViewHelpers.areViewsColliding(draggableView, dropDrawerView)) {
+                dropDragViewIntoDrawer()
             } else {
                 returnViewsToOriginalPosition()
             }
@@ -62,6 +59,12 @@ class DragViewController: UIViewController {
         })
     }
     
+    fileprivate func dropDragViewIntoDrawer() {
+        UIView.animate(withDuration: 1.5, animations: {
+            self.draggableView.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.maxY - 100)
+        })
+    }
+    
     fileprivate func returnViewsToOriginalPosition() {
         UIView.animate(withDuration: 0.7, animations: {
             self.draggableView.center = self.dragViewOriginalPosition
@@ -69,28 +72,19 @@ class DragViewController: UIViewController {
         })
     }
     
-    fileprivate func addRotateAnimationToDraggableView() {
-        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotateAnimation.fromValue = 0.0
-        rotateAnimation.toValue = Double.pi * 2.0
-        rotateAnimation.duration = 2.0
-        rotateAnimation.repeatCount = Float.greatestFiniteMagnitude;
-        draggableView.layer.add(rotateAnimation, forKey: nil)
-    }
+
     
     func createTimer(){
         Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTimeLabel), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimeLabel() {
-        DispatchQueue.main.async {
-//            GetTime.current() { currentTime, error in
-//                if currentTime != nil {
-//                    self.currentTimeLabel.text = currentTime
-//                } else {
-//                    print("Error")
-//                }
+//        TimeHelpers.getCurrentTime() { currentTime, error in
+//            if currentTime != nil {
+//                self.currentTimeLabel.text = currentTime
+//            } else {
+//                print("Error")
 //            }
-        }
+//        }
     }
 }
