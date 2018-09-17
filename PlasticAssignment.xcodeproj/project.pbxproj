@@ -12,7 +12,7 @@
 		301618F321504F0800BF0A4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 301618F221504F0800BF0A4E /* Assets.xcassets */; };
 		301618F621504F0800BF0A4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301618F421504F0800BF0A4E /* LaunchScreen.storyboard */; };
 		301618FE2150500600BF0A4E /* DragViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301618FD2150500600BF0A4E /* DragViewController.swift */; };
-		30161900215054C300BF0A4E /* GetTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301618FF215054C300BF0A4E /* GetTime.swift */; };
+		30161900215054C300BF0A4E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301618FF215054C300BF0A4E /* Helpers.swift */; };
 		301619032150556B00BF0A4E /* StringAny+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301619022150556B00BF0A4E /* StringAny+Extensions.swift */; };
 		4EBA028C2E2C9CB96016DF8E /* Pods_PlasticAssignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274E6B2A36070049B9D55116 /* Pods_PlasticAssignment.framework */; };
 /* End PBXBuildFile section */
@@ -26,7 +26,7 @@
 		301618F521504F0800BF0A4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		301618F721504F0800BF0A4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		301618FD2150500600BF0A4E /* DragViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragViewController.swift; sourceTree = "<group>"; };
-		301618FF215054C300BF0A4E /* GetTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTime.swift; sourceTree = "<group>"; };
+		301618FF215054C300BF0A4E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		301619022150556B00BF0A4E /* StringAny+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringAny+Extensions.swift"; sourceTree = "<group>"; };
 		803887CAB5C5FB9D97D860EE /* Pods-PlasticAssignment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticAssignment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticAssignment/Pods-PlasticAssignment.debug.xcconfig"; sourceTree = "<group>"; };
 		8D95762352AC6B7C8CACBE48 /* Pods-PlasticAssignment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticAssignment.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticAssignment/Pods-PlasticAssignment.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 				301618F421504F0800BF0A4E /* LaunchScreen.storyboard */,
 				301618F721504F0800BF0A4E /* Info.plist */,
 				301618FD2150500600BF0A4E /* DragViewController.swift */,
-				301618FF215054C300BF0A4E /* GetTime.swift */,
+				301618FF215054C300BF0A4E /* Helpers.swift */,
 			);
 			path = PlasticAssignment;
 			sourceTree = "<group>";
@@ -214,7 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30161900215054C300BF0A4E /* GetTime.swift in Sources */,
+				30161900215054C300BF0A4E /* Helpers.swift in Sources */,
 				301618FE2150500600BF0A4E /* DragViewController.swift in Sources */,
 				301618EC21504F0600BF0A4E /* AppDelegate.swift in Sources */,
 				301619032150556B00BF0A4E /* StringAny+Extensions.swift in Sources */,

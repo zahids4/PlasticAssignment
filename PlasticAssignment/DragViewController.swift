@@ -45,17 +45,20 @@ class DragViewController: UIViewController {
             draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: self.view)
         case .ended:
-            if (CGRectIntersectsRect(secondView.frame, sender.frame)) {
-                // Do something
+            if (Helpers.areViewsColliding(draggableView, dropDrawerView)) {
+                UIView.animate(withDuration: 0.7, animations: {
+                    self.draggableView.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.maxY - 100)
+                })
+            } else {
+                returnViewsToOriginalPosition()
             }
-            returnViewsToOriginalPosition()
         default: break
         }
     }
     
     fileprivate func openDrawer() {
         UIView.animate(withDuration: 2.0, animations: {
-            self.dropDrawerView.transform = CGAffineTransform(scaleX: 1.0, y: 6.5)
+            self.dropDrawerView.transform = CGAffineTransform(scaleX: 1.0, y: 9)
         })
     }
     
