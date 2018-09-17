@@ -11,6 +11,7 @@ import Alamofire
 
 struct ViewHelpers {
     static func areViewsColliding(_ view1: UIView,_ view2: UIView) -> Bool{
+        //Much better text wouldve been the separating axis test. Had trouble implementing it.
         return view1.layer.frame.intersects(view2.layer.frame)
     }
     
