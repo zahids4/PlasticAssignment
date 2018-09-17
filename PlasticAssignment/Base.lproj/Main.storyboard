@@ -22,7 +22,7 @@
                                 <rect key="frame" x="87" y="83" width="200" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0e-92-jNO">
-                                        <rect key="frame" x="80.5" y="89" width="39" height="21"/>
+                                        <rect key="frame" x="81" y="89" width="39" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -36,21 +36,33 @@
                                     <constraint firstAttribute="width" constant="200" id="khC-yg-rM6"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5FV-v6-cGp">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.70492940989847708" green="0.70492940989847708" blue="0.70492940989847708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4ng-81-W47"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Pai-KS-YfW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M43-IL-lCw"/>
                             <constraint firstItem="Pai-KS-YfW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-150.5" id="M8f-jU-YOV"/>
+                            <constraint firstItem="5FV-v6-cGp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="iwv-NS-RnG"/>
+                            <constraint firstItem="5FV-v6-cGp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kXz-eB-zcR"/>
+                            <constraint firstItem="5FV-v6-cGp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pxN-13-Pc2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="currentTimeLabel" destination="P0e-92-jNO" id="t61-Jd-52y"/>
                         <outlet property="draggableView" destination="Pai-KS-YfW" id="TLW-m1-aqD"/>
+                        <outlet property="dropDrawerView" destination="5FV-v6-cGp" id="YRN-ep-IOi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
         </scene>
     </scenes>
 </document>

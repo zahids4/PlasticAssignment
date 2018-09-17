@@ -10,15 +10,17 @@ import UIKit
 
 class DragViewController: UIViewController {
     @IBOutlet weak var draggableView: UIView!
+    @IBOutlet weak var dropDrawerView: UIView!
     @IBOutlet weak var currentTimeLabel: UILabel!
-    var originalPosition = CGPoint()
+    var dragViewOriginalPosition = CGPoint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addDragGestureToDraggableView()
         addRotateAnimationToDraggableView()
         createTimer()
-        originalPosition = draggableView.center
+        dragViewOriginalPosition = draggableView.center
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,28 +29,40 @@ class DragViewController: UIViewController {
     }
     
     fileprivate func addDragGestureToDraggableView() {
-        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(configureDragAnimation(_:)))
+        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(configureGestureAndAnimations(_:)))
         draggableView.isUserInteractionEnabled = true
         draggableView.addGestureRecognizer(dragGesture)
     }
     
     
-    @objc fileprivate func configureDragAnimation(_ sender: UIPanGestureRecognizer){
-        switch sender.state{
-            case .changed:
-                self.view.bringSubview(toFront: draggableView)
-                let translation = sender.translation(in: self.view)
-                draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
-                sender.setTranslation(CGPoint.zero, in: self.view)
-            case .ended:
-                returnToOriginalPosition()
-            default: break
+    @objc fileprivate func configureGestureAndAnimations(_ sender: UIPanGestureRecognizer){
+        switch sender.state {
+        case .began:
+            openDrawer()
+        case .changed:
+            self.view.bringSubview(toFront: draggableView)
+            let translation = sender.translation(in: self.view)
+            draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
+            sender.setTranslation(CGPoint.zero, in: self.view)
+        case .ended:
+            if (CGRectIntersectsRect(secondView.frame, sender.frame)) {
+                // Do something
+            }
+            returnViewsToOriginalPosition()
+        default: break
         }
     }
     
-    fileprivate func returnToOriginalPosition() {
+    fileprivate func openDrawer() {
+        UIView.animate(withDuration: 2.0, animations: {
+            self.dropDrawerView.transform = CGAffineTransform(scaleX: 1.0, y: 6.5)
+        })
+    }
+    
+    fileprivate func returnViewsToOriginalPosition() {
         UIView.animate(withDuration: 0.7, animations: {
-            self.draggableView.center = self.originalPosition
+            self.draggableView.center = self.dragViewOriginalPosition
+            self.dropDrawerView.transform = CGAffineTransform.identity
         })
     }
     
