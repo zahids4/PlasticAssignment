@@ -19,9 +19,9 @@ class DragViewController: UIViewController {
         super.viewDidLoad()
         addDragGestureAndAnimations()
         ViewHelpers.addRotateAnimationTo(draggableView)
+        dragViewOriginalPosition = draggableView.center
         //Could not get this to work without memery leaks
         //createTimerForTimeLabel()
-        dragViewOriginalPosition = draggableView.center
     }
 
     override func didReceiveMemoryWarning() {
