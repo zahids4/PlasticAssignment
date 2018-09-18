@@ -10,7 +10,8 @@ import UIKit
 
 class DragViewController: UIViewController {
     @IBOutlet weak var draggableView: UIView!
-    @IBOutlet weak var dropDrawerView: UIView!
+    @IBOutlet weak var drawerView: UIView!
+    @IBOutlet weak var dropZoneView: UIView!
     @IBOutlet weak var currentTimeLabel: UILabel!
     var dragViewOriginalPosition = CGPoint()
     
@@ -18,7 +19,8 @@ class DragViewController: UIViewController {
         super.viewDidLoad()
         addDragGestureAndAnimations()
         ViewHelpers.addRotateAnimationTo(draggableView)
-        createTimer()
+        //Could not get this to work without memery leaks
+        //createTimerForTimeLabel()
         dragViewOriginalPosition = draggableView.center
     }
 
@@ -44,7 +46,7 @@ class DragViewController: UIViewController {
             draggableView.center = CGPoint(x: draggableView.center.x + translation.x, y: draggableView.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: self.view)
         case .ended:
-            if (ViewHelpers.areViewsColliding(draggableView, dropDrawerView)) {
+            if (ViewHelpers.areViewsColliding(draggableView, dropZoneView)) {
                 dropDragViewIntoDrawer()
             } else {
                 returnViewsToOriginalPosition()
@@ -55,7 +57,8 @@ class DragViewController: UIViewController {
     
     fileprivate func openDrawer() {
         UIView.animate(withDuration: 2.0, animations: {
-            self.dropDrawerView.transform = CGAffineTransform(scaleX: 1.0, y: 9)
+            self.drawerView.transform = CGAffineTransform(scaleX: 1.0, y: 9)
+            self.dropZoneView.transform = CGAffineTransform(scaleX: 1.0, y: 9)
         })
     }
     
@@ -68,21 +71,22 @@ class DragViewController: UIViewController {
     fileprivate func returnViewsToOriginalPosition() {
         UIView.animate(withDuration: 0.7, animations: {
             self.draggableView.center = self.dragViewOriginalPosition
-            self.dropDrawerView.transform = CGAffineTransform.identity
+            self.drawerView.transform = CGAffineTransform.identity
+            self.dropZoneView.transform = CGAffineTransform.identity
         })
     }
     
-    func createTimer(){
+    func createTimerForTimeLabel(){
         Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTimeLabel), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimeLabel() {
-//        TimeHelpers.getCurrentDateTime() { currentDateTime, error in
-//            if currentDateTime != nil {
-//                self.currentTimeLabel.text = TimeHelpers.formatDateTime(currentDateTime!)
-//            } else {
-//                print("Error")
-//            }
-//        }
+        TimeHelpers.getCurrentDateTime() { currentDateTime, error in
+            if currentDateTime != nil {
+                self.currentTimeLabel.text = TimeHelpers.formatDateTime(currentDateTime!)
+            } else {
+                print("Error")
+            }
+        }
     }
 }

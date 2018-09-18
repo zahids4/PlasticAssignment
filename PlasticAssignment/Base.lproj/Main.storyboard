@@ -43,21 +43,31 @@
                                     <constraint firstAttribute="height" constant="50" id="4ng-81-W47"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fW8-2c-DIM">
+                                <rect key="frame" x="0.0" y="629.5" width="375" height="37.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37.5" id="i3Y-f9-5AA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Pai-KS-YfW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M43-IL-lCw"/>
                             <constraint firstItem="Pai-KS-YfW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-150.5" id="M8f-jU-YOV"/>
+                            <constraint firstItem="fW8-2c-DIM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XlY-PF-JcI"/>
                             <constraint firstItem="5FV-v6-cGp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="iwv-NS-RnG"/>
                             <constraint firstItem="5FV-v6-cGp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kXz-eB-zcR"/>
+                            <constraint firstItem="fW8-2c-DIM" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="o85-aa-KOA"/>
                             <constraint firstItem="5FV-v6-cGp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pxN-13-Pc2"/>
+                            <constraint firstItem="fW8-2c-DIM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vn6-73-oWu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="currentTimeLabel" destination="P0e-92-jNO" id="t61-Jd-52y"/>
                         <outlet property="draggableView" destination="Pai-KS-YfW" id="TLW-m1-aqD"/>
-                        <outlet property="dropDrawerView" destination="5FV-v6-cGp" id="YRN-ep-IOi"/>
+                        <outlet property="drawerView" destination="5FV-v6-cGp" id="YRN-ep-IOi"/>
+                        <outlet property="dropZoneView" destination="fW8-2c-DIM" id="cKX-xM-fhi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
